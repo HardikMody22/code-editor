@@ -15,3 +15,10 @@
 .Users {
   flex: 1.5;
 }
+
+textarea {
+  background: white;
+  margin-top: 50px;
+  color: black;
+  resize: none;
+}

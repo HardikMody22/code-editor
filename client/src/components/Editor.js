@@ -16,6 +16,10 @@ function Editor(props) {
   const socket = props.socket;
   const [ch, setCh] = useState(0);
 
+  function compile() {
+    socket.emit("compile");
+  }
+
   useEffect(() => {
     socket.on("receive-msg", data => {
       setServerCode(data);
@@ -23,35 +27,43 @@ function Editor(props) {
     });
   });
 
+  let title = "< MergeCode />";
+
   return (
-    <CodeMirror
-      className="Editor"
-      value={clientCode}
-      options={{
-        mode: "javascript",
-        theme: "material",
-        lineNumbers: true
-      }}
-      onChange={(editor, data, value) => {
-        setLine(editor.getCursor().line);
-        setCh(editor.getCursor().ch);
-        if (value === "") {
-          setClientCode("");
-          socket.emit("change-code", "");
-        } else {
-          setClientCode(value);
-          if (serverCode !== clientCode) {
-            socket.emit("change-code", clientCode);
+    <div className="Editor">
+      <nav>
+        <h3>{title}</h3>
+        <button
+          onClick={compile}
+          className="btn btn-default btn-danger compile"
+        >
+          Compile
+        </button>
+      </nav>
+
+      <CodeMirror
+        value={clientCode}
+        options={{
+          mode: "javascript",
+          theme: "material",
+          lineNumbers: true
+        }}
+        onChange={(editor, data, value) => {
+          setLine(editor.getCursor().line);
+          setCh(editor.getCursor().ch);
+          if (value === "") {
+            setClientCode("");
+            socket.emit("change-code", "");
+          } else {
+            setClientCode(value);
+            if (serverCode !== clientCode) {
+              socket.emit("change-code", clientCode);
+            }
           }
-        }
-        editor.setCursor({ line: line, ch: ch });
-      }}
-      /*onCursorActivity={(editor, data, value) => {
-        setLine(editor.getCursor().line);
-        setCh(editor.getCursor().ch);
-        editor.setCursor({ line: line, ch: ch });
-      }}*/
-    />
+          editor.setCursor({ line: line, ch: ch });
+        }}
+      />
+    </div>
   );
 }
 

@@ -1,4 +1,4 @@
-# code-editor
+# Real time Collaborative Coding
 
 Frontend made using React, Hooks, codemirror, and socket.io
 

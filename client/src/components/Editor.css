@@ -2,3 +2,25 @@
   height: 100vw !important;
   width: 100%;
 }
+
+nav {
+  width: 100vw;
+  display: flex;
+  background: rgb(37, 39, 42);
+  color: white;
+  height: 50px;
+}
+
+h3 {
+  padding-bottom: 10px;
+  flex: 8;
+  text-align: center;
+}
+
+.language {
+}
+
+.compile {
+  float: right;
+  flex: 0.4;
+}
