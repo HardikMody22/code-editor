@@ -1,9 +1,6 @@
-#include <iostream>
-using namespace std;
+function main() {
+ // Write your code here
 
-
-int main() {
-  cout << "Hello World\n";
-  cout << "yo\n";  
-  return 0;  
 }
+
+main()

@@ -1,6 +1,7 @@
 .Login {
   background-color: rgb(38, 39, 46);
   height: 100%;
+  flex: 1;
 }
 
 .login-window {
@@ -20,6 +21,7 @@
   border: none;
   font-size: 28px;
   height: auto;
+  color: black;
 }
 
 .join-btn {

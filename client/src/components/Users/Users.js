@@ -6,10 +6,12 @@ function Users(props) {
   const socket = props.socket;
 
   useEffect(() => {
-    socket.on("user-list", data => {
-      setUsers(data);
-      console.log(data);
-    });
+    if (socket != null) {
+      socket.on("user-list", data => {
+        setUsers(data);
+        console.log(data);
+      });
+    }
   });
 
   var render_users = users.map(x => (
